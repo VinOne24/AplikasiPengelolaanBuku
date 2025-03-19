@@ -8,12 +8,14 @@
                         <p class="">{{ Auth::user()->email }}</p>
 
                     </div>
-    <h2 class="mt-2">Dashboard</h2>
+                    <a href="/home" style="text-decoration: none;color: inherit;">
+                        <h2 class="mt-2">Dashboard</h2>
+                    </a>
     <ul>
-        <li><a href="#">Beranda</a></li>
-        <li><a href="#">Profil</a></li>
-        <li><a href="#">Laporan</a></li>
-        <li><a href="#">Pengaturan</a></li>
+        <li><a href="/tambahbuku">Tambah Buku</a></li>
+        <li><a href="#">Cari Buku</a></li>
+        <li><a href="/index">Kelola Buku</a></li>
+        <li><a href="#">Pinjam Buku</a></li>
     </ul>
 </div>
 
