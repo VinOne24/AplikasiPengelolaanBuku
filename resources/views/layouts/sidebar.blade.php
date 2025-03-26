@@ -13,9 +13,9 @@
                     </a>
     <ul>
         <li><a href="/tambahbuku">Tambah Buku</a></li>
-        <li><a href="#">Cari Buku</a></li>
+        <li><a href="/caribuku">Cari Buku</a></li>
         <li><a href="/index">Kelola Buku</a></li>
-        <li><a href="#">Pinjam Buku</a></li>
+        <li><a href="/peminjaman-index">Pinjam Buku</a></li>
     </ul>
 </div>
 

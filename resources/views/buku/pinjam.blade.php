@@ -69,25 +69,45 @@
             </div>
         @endif
     </div>
-    <h1>Form Input Buku</h1>
-    <form action="/buku/store" method="post">
+    <h1>Form Peminjaman Buku</h1>
+    <form action="/pinjambuku/peminjaman" method="post">
         @csrf
 
+        <input id="id" name="id" type="text" hidden value="{{$buku->id}}">
+        <input id="id" name="id_peminjam" type="text" hidden value="{{ Auth::user()->id }}">
+        <div class="form-group">
+            <label for="tahun_terbit">Lama Peminjaman:</label>
+            @error('tanggal_pinjam')
+            <div class="error-message"> {{ $message }}</div>
+            @enderror
+            <input type="date" id="tanggal_pinjam" name="tanggal_pinjam" placeholder="Tanggal mulai peminjaman">
+            << Sampai Dengan >>
+            @error('tanggal_kembali')
+            <div class="error-message">{{ $message }}</div>
+            @enderror
+            <input type="date" id="tanggal_kembali" name="tanggal_kembali" placeholder="Tanggal mulai peminjaman">
+        </div>
 
+        <div class="form-group">
+            <label for="judul">Nama Peminjam:</label>
+            @error('judul')
+            <div class="error-message">{{ $message }}</div>
+            @enderror
+            <input type="text" id="nama_peminjam" name="nama_peminjam" readonly value="{{ Auth::user()->name }}">
+        </div>
         <div class="form-group">
             <label for="judul">Judul Buku:</label>
             @error('judul')
             <div class="error-message">{{ $message }}</div>
             @enderror
-            <input type="text" id="judul" name="judul" placeholder="Masukkan judul buku">
+            <input type="text" id="judul" name="judul" readonly value="{{ $buku->judul }}">
         </div>
-
         <div class="form-group">
             <label for="penulis">Penulis:</label>
             @error('penulis')
             <div class="error-message"> {{ $message }}</div>
             @enderror
-            <input type="text" id="penulis" name="penulis" placeholder="Masukkan nama penulis">
+            <input type="text" id="penulis" name="penulis" readonly value="{{ $buku->penulis }}">
         </div>
 
         <div class="form-group">
@@ -95,15 +115,15 @@
             @error('tahun_terbit')
             <div class="error-message"> {{ $message }}</div>
             @enderror
-            <input type="date" id="tahun_terbit" name="tahun_terbit" placeholder="Masukkan tahun terbit">
+            <input type="date" id="tahun_terbit" name="tahun_terbit" readonly value="{{ $buku->tahun_terbit }}">
         </div>
 
         <div class="form-group">
-            <label for="kode_buku">Kode Buku:</label>
-            @error('kode_buku')
+            <label for="buku_id">Kode Buku:</label>
+            @error('user_id')
             <div class="error-message"> {{ $message }}</div>
             @enderror
-            <input type="text" disabled id="kode_buku" name="kode_buku" value="{{ Auth::user()->id }}" placeholder="{{ Auth::user()->id }}">
+            <input type="text" id="user_id" name="user_id" readonly value="{{ $buku->user_id }}">
         </div>
 
         <div class="form-group">
@@ -114,46 +134,13 @@
             @error('kategoriLainnya')
             <div class="error-message"> {{ $message }}</div>
             @enderror
-            <select id="kategori" name="kategori" onchange="toggleInputLainnya()">
-                <option value="">Pilih kategori</option>
-                <option value="fiksi">Fiksi</option>
-                <option value="non-fiksi">Non-Fiksi</option>
-                <option value="sains">Sains</option>
-                <option value="sejarah">Sejarah</option>
-                <option value="lainnya">Lainnya</option>
+            <select readonly id="kategori" name="kategori" onchange="toggleInputLainnya()">
+                <option value="{{$buku->kategori}}">{{$buku->kategori}}</option>
             </select>
-        </div>
-
-        <!-- Field input tambahan yang akan muncul saat "Lainnya" dipilih -->
-        <div class="form-group" id="inputLainnya" style="display: none;">
-            <label for="kategoriLainnya">Masukkan kategori lainnya:</label>
-            <input type="text" id="kategoriLainnya" name="kategoriLainnya" placeholder="Masukkan kategori Buku Yang Sesuai">
         </div>
 
         <button class="btn btn-primary" type="submit">Submit</button>
     </form>
 </div>
-<script>
-    function toggleInputLainnya() {
-        const selectKategori = document.getElementById('kategori');
-        const inputLainnya = document.getElementById('inputLainnya');
 
-        if (selectKategori.value === 'lainnya') {
-            inputLainnya.style.display = 'block';
-        } else {
-            inputLainnya.style.display = 'none';
-        }
-    }
-
-    // Menggabungkan nilai sebelum form dikirim
-    document.querySelector('form').addEventListener('submit', function(event) {
-        const selectKategori = document.getElementById('kategori');
-        const inputLainnya = document.getElementById('kategoriLainnya');
-
-        // Jika "Lainnya" dipilih dan ada input, ganti nilai select dengan input
-        if (selectKategori.value === 'lainnya' && inputLainnya.value.trim() !== '') {
-            selectKategori.value = inputLainnya.value.trim();
-        }
-    });
-</script>
 @endsection

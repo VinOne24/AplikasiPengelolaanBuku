@@ -13,7 +13,7 @@
         <thead class="thead-light">
             <tr>
                 <th style="text-align: center">No</th>
-                <th style="text-align: center">Kode Buku</th>
+                <th style="text-align: center">Pemilik Buku</th>
                 <th style="text-align: center">Judul</th>
                 <th style="text-align: center">Penulis</th>
                 <th style="text-align: center">Tahun Terbit</th>
@@ -26,21 +26,21 @@
 
             <tr>
                 <th scope="row">{{$key + 1}}</th>
-                <td>{{$item->user_id}}:{{ Auth::user()->name }}</td>
+                @php
+                // Ambil semua user
+                $users = \App\Models\User::where('id',$item->user_id)->first();
+                $kode = $users->name;
+                // dd($users);
+                @endphp
+                <td>{{$kode}}</td>
                 <td>{{$item->judul}}</td>
                 <td>{{$item->penulis}}</td>
                 <td>{{$item->tahun_terbit}}</td>
                 <td>{{$item->kategori}}</td>
                 <td>
-                    <a href="/tambahbuku" type="button" class="btn btn-primary">
-                        <i class="fas fa-plus"></i> Tambah
+                    <a href="/pinjambuku/{{$item->id}}/pinjam" type="button" class="btn btn-success">
+                        <i class="fas fa-plus"></i> Pinjam
                     </a>
-                    <a href="/buku/{{ $item->id }}/edit" type="button" class="btn btn-warning">
-                        <i class="fas fa-edit"></i> Edit
-                    </a>
-                    <button type="button" class="btn btn-danger">
-                        <i class="fas fa-trash"></i> Hapus
-                    </button>
                 </td>
             </tr>
             @empty
