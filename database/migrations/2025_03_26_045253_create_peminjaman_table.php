@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('penulis');
             $table->date('tahun_terbit');
             $table->string('kategori');
+            $table->string('status');
             $table->timestamps();
         });
     }

@@ -57,6 +57,7 @@ class BukuController extends Controller
             'judul' => $request['judul'],
             'penulis' =>$request['penulis'],
             'tahun_terbit' => $request['tahun_terbit'],
+            'deskripsi' => $request['deskripsi'],
             'buku_id' => $user_id,
             'kategori' => $kategori,
         ]);
@@ -67,7 +68,6 @@ class BukuController extends Controller
         $buku = Buku::find($id);
         return view('buku.edit', compact('buku'));
     }
-
     public function update(Request $request, $id){
         $user_id = Auth::user()->id;
         $kategori = $request->input('kategori');
@@ -100,11 +100,19 @@ class BukuController extends Controller
         $buku = Buku::find($id);
         $buku->judul = $request->judul;
         $buku->penulis = $request->penulis;
+        $buku->deskripsi = $request->deskripsi;
         $buku->buku_id = $user_id;
         $buku->tahun_terbit = $request->tahun_terbit;
         $buku->kategori = $kategori;
         $buku->save();
         $request->session()->flash('pesan', 'Berhasil Mengedit data Buku');
+        return redirect('/index');
+    }
+    public function delete(Request $request, $id){
+        $user_id = Auth::user()->id;
+        $buku = Buku::where('user_id', $user_id)->find($id);
+        $buku->delete();
+        $request->session()->flash('pesan', 'Berhasil Menghapus data Buku');
         return redirect('/index');
     }
 
@@ -136,9 +144,10 @@ class BukuController extends Controller
             'buku_id' => $request['id'],
             'kategori' => $request['kategori'],
             'kode_buku' => $request['user_id'],
+            'status' => 'menunggu',
         ]);
         $request->session()->flash('pesan', 'Berhasil Menambah data pinjam Buku');
-        return redirect('/caribuku');
+        return redirect('/peminjaman-index');
 
     }
     public function peminjamanindex(){

@@ -106,6 +106,16 @@
             <input type="text" disabled id="kode_buku" name="kode_buku" value="{{ Auth::user()->id }}" placeholder="{{ Auth::user()->id }}">
         </div>
 
+        <div class="mb-3">
+            <label for="deskripsi" class="form-label">Deskripsi Buku</label>
+            <textarea
+                class="form-control"
+                id="deskripsi"
+                name="deskripsi"
+                rows="3"
+                placeholder="Masukkan deskripsi buku"></textarea>
+        </div>
+
         <div class="form-group">
             <label for="kategori">Kategori (Pilih lainnya jika tidak ada kategori):</label>
             @error('kategori')

@@ -13,7 +13,7 @@
         <thead class="thead-light">
             <tr>
                 <th style="text-align: center">No</th>
-                <th style="text-align: center">Kode Buku</th>
+                <th style="text-align: center">Kode Buku : Pemilik</th>
                 <th style="text-align: center">Judul</th>
                 <th style="text-align: center">Penulis</th>
                 <th style="text-align: center">Tahun Terbit</th>
@@ -38,11 +38,35 @@
                     <a href="/buku/{{ $item->id }}/edit" type="button" class="btn btn-warning">
                         <i class="fas fa-edit"></i> Edit
                     </a>
-                    <button type="button" class="btn btn-danger">
-                        <i class="fas fa-trash"></i> Hapus
+                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deletemodal{{ $item->id }}">
+                        <i
+                    class="fa-solid fa-trash"></i>
                     </button>
                 </td>
             </tr>
+            <!-- Modal -->
+            <div class="modal fade" id="deletemodal{{ $item->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Apakah kamu yakin utuk menghapus data Buku {{$item->judul}}?</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                    Setelah menghapus Data Buku kamu tidak dapat mengembalikannya !!!
+                    </div>
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <form action="/buku/{{ $item->id }}/delete" method="post">
+                        @csrf
+                        @method('delete')
+                        <input type="submit"
+                            value="Delete"class="btn btn-danger btn-border">
+                    </form>
+                    </div>
+                </div>
+                </div>
+            </div>
             @empty
 
             @endforelse

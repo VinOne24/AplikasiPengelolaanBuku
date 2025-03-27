@@ -21,5 +21,6 @@ class Peminjaman extends Model
         'tahun_terbit',
         'buku_id',
         'kategori',
+        'status',
     ];
 }

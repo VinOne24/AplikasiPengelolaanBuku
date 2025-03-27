@@ -25,6 +25,7 @@ Route::get('/caribuku', [App\Http\Controllers\BukuController::class, 'cari'])->n
 Route::get('/tambahbuku', [App\Http\Controllers\BukuController::class, 'create'])->name('create');
 Route::get('/buku/{id}/edit', [App\Http\Controllers\BukuController::class, 'edit'])->name('edit');
 Route::post('/buku/{id}/update', [App\Http\Controllers\BukuController::class, 'update'])->name('update');
+Route::delete('/buku/{id}/delete', [App\Http\Controllers\BukuController::class, 'delete'])->name('buku.delete');
 Route::get('/index', [App\Http\Controllers\BukuController::class, 'index'])->name('index');
 Route::post('/buku/store', [App\Http\Controllers\BukuController::class, 'store'])->name('store');
 

@@ -46,6 +46,8 @@ class DatabaseSeeder extends Seeder
             'penulis' => 'Ajeng M',
             'tahun_terbit'=> '2025-03-01',
             'kategori' => 'komputer',
+            'deskripsi' => 'Buku ini mempelajari pemrograman dasar adalah langkah penting untuk memahami bagaimana komputer bekerja dan menciptakan solusi digital. Mulailah dengan memahami konsep dasar, pilih bahasa pemrograman yang sesuai, dan praktikkan dengan proyek sederhana. ',
+
          ]);
          Buku::create([
             'id'=>'2',
@@ -54,6 +56,7 @@ class DatabaseSeeder extends Seeder
             'penulis' => 'Rohani M',
             'tahun_terbit'=> '2025-01-01',
             'kategori' => 'Sejarah',
+            'deskripsi' => 'Didalam buku ini, dihadirkan secara lengkap dan komprehensif sejarah Indonesia sejak era prasejarah, era prakolanial, era kolonial',
          ]);
          Buku::create([
             'id'=>'3',
@@ -62,6 +65,7 @@ class DatabaseSeeder extends Seeder
             'penulis' => 'Wahyu S',
             'tahun_terbit'=> '2024-03-01',
             'kategori' => 'Sains',
+            'deskripsi' => 'Buku ini mencakup konsep-konsep dasar seperti penjumlahan, pengurangan, perkalian, pembagian, pecahan, desimal, persentase, dan konsep-konsep aljabar dasar. ',
          ]);
          Buku::create([
             'id'=>'4',
@@ -70,6 +74,7 @@ class DatabaseSeeder extends Seeder
             'penulis' => 'Selamet A',
             'tahun_terbit'=> '2022-03-01',
             'kategori' => 'Sains',
+            'deskripsi' => 'Buku ini adalah cabang ilmu matematika yang mempelajari objek-objek yang diskrit, yaitu tidak saling berhubungan. Objek-objek tersebut memiliki nilai tertentu dan terpisah. ',
          ]);
     }
 }

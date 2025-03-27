@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>Buku</title>
 
     <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
 
@@ -82,6 +82,7 @@
             transition: margin-left 0.3s ease; /* Animasi saat sidebar melipat */
             padding: 20px;
             width: calc(100% - 250px); /* Sesuaikan lebar main content */
+            padding-bottom: 100px;
         }
 
         /* Header */
@@ -207,20 +208,16 @@
             @yield('content')
         </div>
     </div>
-    {{-- <div id="app">
-        @include('layouts.header')
-        <div id="layoutSidenav">
-            <div id="layoutSidenav_nav">
-                @include('layouts.sidebar')
-            </div>
-
-            <div id="layoutSidenav_content">
-                <main class="">
-                    @yield('content')
-                </main>
-            </div>
+    <footer style="background-color: #f8f9fa; padding: 15px 0; text-align: center; position: fixed; bottom: 0; width: 100%; box-shadow: 0 -2px 5px rgba(0,0,0,0.1);">
+        <div style="color: #6c757d; font-size: 14px;">
+            &copy; 2025 Pengelolaan Buku. All Rights Reserved.
         </div>
-    </div> --}}
+        <div style="margin-top: 5px;">
+            <a href="/privacy" style="color: #007bff; text-decoration: none; margin: 0 10px;">Privacy Policy</a>
+            <a href="/terms" style="color: #007bff; text-decoration: none; margin: 0 10px;">Terms of Service</a>
+            <a href="/contact" style="color: #007bff; text-decoration: none; margin: 0 10px;">Contact Us</a>
+        </div>
+    </footer>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 <script>
